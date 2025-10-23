@@ -47,7 +47,8 @@
                 quantity: element.val()
             },
             success: function(response){
-                $("#cart-products").html(response.success);
+                window.location.reload();
+                //$("#cart-products").html(response.success);
             }
         })
     });
