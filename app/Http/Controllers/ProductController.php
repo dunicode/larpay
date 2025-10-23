@@ -13,7 +13,7 @@ class ProductController extends Controller
             $data = Product::all();
             return view('products.list', ['data' => $data]);
         } catch (\Exception $e) {
-            \Log::debug($e->getMessage());
+            info($e->getMessage());
             return Redirect::back()->with('message-error', 'An error occurred while trying to process your request.');
         }
     }

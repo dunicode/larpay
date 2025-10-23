@@ -57,6 +57,23 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <strong>{{ __('Cart (').count(session('cart', [])).")" }}</strong>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @if(session('cart', []))
+                                        @foreach(session('cart', []) as $key => $value)
+                                            <li><a class="dropdown-item" href="#"><img src="/products/{{$value['image']}}" width="20"> {{$value['name']}}</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                        @endforeach
+                                            <li class="text-center"><a class="dropdown-item" href="{{route('cart.list')}}"><strong><i class="fa fa-cart-plus"></i>View All</strong><a></li>
+                                    @else
+                                        <li><a class="dropdown-item" href="#">No products in cart</a></li>
+                                    @endif
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
@@ -85,5 +102,6 @@
             @include('alerts.errors')
         </main>
     </div>
+    @yield('footer')
 </body>
 </html>
